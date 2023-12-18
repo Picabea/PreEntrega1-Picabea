@@ -7,8 +7,6 @@ header{
   width: 100%;
   position: sticky;
   top: 0;
-  display: flex;
-  justify-content: space-between;
   padding: 10px;
   background-color: rgba(60, 204, 60, 0.411);
 }

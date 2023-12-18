@@ -1,6 +1,9 @@
 import classes from './NavBar.module.css'
 import Button from '../Button/Button.jsx'
 import logo from './assets/ron-daLogo.png'
+import CartWidget from '../CartWidget/CartWidget.jsx'
+
+
 const NavBar = () => {
     console.log(classes)
     return(
@@ -18,6 +21,7 @@ const NavBar = () => {
                 <Button className={classes.alignCenter} texto="Aperitivos"/>
             </div>
         </section>
+        <CartWidget/>
         
     </nav>
     )
