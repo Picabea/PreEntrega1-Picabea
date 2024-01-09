@@ -1,0 +1,25 @@
+.nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.nav div{
+    display: flex;
+}
+
+.alignCenter{
+    align-self: center;
+}
+
+.nombrePagina{
+    font-family: Space Grotesk, sans-serif;
+    font-size: 200%;
+    margin: 5px;
+}
+
+.logo{
+    height: 40px;
+    width: 40px;
+    align-self: center;
+}

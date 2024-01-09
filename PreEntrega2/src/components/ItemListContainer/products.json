@@ -1,0 +1,32 @@
+{
+    "vodka": [
+    {
+      "tipoBebida":"Vodka",
+      "marca":"Smirnoff",
+      "saborizado":"No",
+      "precio":4000,
+      "src":"https://www.goldenacrewines.co.uk/wp-content/uploads/2020/04/Smirnoff-1-litre-%C2%A320.49.png",
+      "graduacion":"40%",
+      "contenido":"700ml"
+    },
+    {
+      "tipoBebida":"Vodka",
+      "marca":"Sernova",
+      "saborizado":"Frutos Rojos",
+      "precio":5000,
+      "src":"https://dcdn.mitiendanube.com/stores/001/721/112/products/sin-titulo-1811-e5f5190f9d30fe229116588485990033-1024-1024.png",
+      "graduacion":"25%",
+      "contenido":"750ml"
+    },
+    {
+      "tipoBebida":"Vodka",
+      "marca":"absolut",
+      "saborizado":"Raspberry",
+      "precio":12000,
+      "src":"https://bzsgrupobebidas.com.ar/wp-content/uploads/2018/02/vodka-rasp.png",
+      "graduacion":"41%",
+      "contenido":"1l"
+    }
+  ]
+
+}
