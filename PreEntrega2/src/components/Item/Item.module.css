@@ -1,0 +1,19 @@
+.itemContainer img{
+    width: 100%;
+}
+
+
+.itemContainer{
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(154, 247, 154, 0.151);
+    border-radius: 10%;
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 15%;
+    height: 300px
+}
+
+.itemContainer b, h3{
+    margin: 3px;
+}
