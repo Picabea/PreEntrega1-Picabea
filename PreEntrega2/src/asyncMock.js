@@ -42,7 +42,7 @@ const products = [
         variedad: "Indian Pale Ale",
         descripcion: "La cerveza Andes Origen Indian Pale Ale es conocida por su amargor característico y sus aromas frutales, creando una experiencia única.",
         precio: 200,
-        src: "https://nubishops.com.ar/tools/thumb.php?im=https://d3ugyf2ht6aenh.cloudfront.net/stores/972/269/products/andes_ipa_1000x2048_f9c0fb04-5564-499b-b7df-3e65e3bb9c9c_grande1-834bfca25342359ea215914720299753-480-0.png",
+        src: "https://dcdn.mitiendanube.com/stores/001/721/112/products/sin-titulo-431-c2946f540b70538c9416284860983366-1024-1024.png",
         graduacion: "6.9%",
         contenido: "473ml",
         stock: 10
@@ -94,6 +94,90 @@ const products = [
         graduacion: "41%",
         contenido: "1l",
         stock: 10
+    },
+    {
+        id: 9,
+        tipoBebida: "Ron",
+        marca: "Havana Club",
+        variedad: "Añejo 7 años",
+        descripcion: "El ron Havana Club Añejo 7 años es conocido por su suavidad y complejidad, con notas de frutas secas y vainilla.",
+        precio: 3500,
+        src: "https://www.vinasa.mx/wp-content/uploads/2021/11/Havana-Club-7-anos-Ron.png",
+        graduacion: "40%",
+        contenido: "700ml",
+        stock: 10
+    },
+    {
+        id: 10,
+        tipoBebida: "Ron",
+        marca: "Zacapa",
+        variedad: "Centenario 23",
+        descripcion: "El ron Zacapa Centenario 23 es conocido por su suavidad y ricos sabores a caramelo, chocolate y frutas tropicales.",
+        precio: 5000,
+        src: "https://liquorlodge.ca/cdn/shop/files/ronzacapa_23_800x.png?v=1686003011",
+        graduacion: "40%",
+        contenido: "750ml",
+        stock: 10
+    },
+    {
+        id: 11,
+        tipoBebida: "Ron",
+        marca: "Appleton Estate",
+        variedad: "Reserve Blend",
+        descripcion: "El ron Appleton Estate Reserve Blend ofrece una mezcla armoniosa de sabores a nuez, caramelo y especias.",
+        precio: 4500,
+        src: "https://siralbertwhisky.com/wp-content/uploads/2021/04/CAM043.png",
+        graduacion: "40%",
+        contenido: "750ml",
+        stock: 10
+    },
+    {
+        id: 12,
+        tipoBebida: "Aperitivo",
+        marca: "Campari",
+        variedad: "Bitter",
+        descripcion: "El aperitivo Campari es conocido por su sabor amargo y sus notas de hierbas y especias. Ideal para cócteles refrescantes.",
+        precio: 2500,
+        src: "https://www.delgadoseleccion.com/wp-content/uploads/2023/05/CAMPARI-700ML.png",
+        graduacion: "25%",
+        contenido: "700ml",
+        stock: 10
+    },
+    {
+        id: 13,
+        tipoBebida: "Aperitivo",
+        marca: "Aperol",
+        variedad: "Bitter",
+        descripcion: "El Aperol es un aperitivo italiano conocido por su color naranja brillante y su sabor refrescante con toques cítricos.",
+        precio: 2200,
+        src: "https://productionbhsstorage.blob.core.windows.net/cms-media-storage/assets/medium_3224_799cd81dc5.png",
+        graduacion: "11%",
+        contenido: "1000ml",
+        stock: 10
+    },
+    {
+        id: 14,
+        tipoBebida: "Aperitivo",
+        marca: "Martini",
+        variedad: "Rosso",
+        descripcion: "El vermouth Martini Rosso es apreciado por su sabor dulce y especiado, perfecto para cócteles clásicos como el Negroni.",
+        precio: 1800,
+        src: "https://acdn.mitiendanube.com/stores/001/448/812/products/aperitivo-81-66c2d71d30fe31557416336087409998-1024-1024.png",
+        graduacion: "15%",
+        contenido: "750ml",
+        stock: 10
+    },
+    {
+        id: 15,
+        tipoBebida: "Aperitivo",
+        marca: "Lillet",
+        variedad: "Blanc",
+        descripcion: "El aperitivo Lillet Blanc es conocido por su frescura y elegancia, con notas de cítricos y flores blancas.",
+        precio: 2800,
+        src: "https://www.emporiofreicaneca.com.br/wp-content/uploads/2019/04/lillet.png",
+        graduacion: "17%",
+        contenido: "750ml",
+        stock: 10
     }
 ]
 // const [rones, setRones] = useState(["Havana Club", "Ron de prueba"])
@@ -106,8 +190,18 @@ export const getProducts = () => {
     })
 }
 
-export const getDetailedProduct = (id) =>{
+export const getProductsByCategory = (productCategory) => {
     return new Promise((resolve) => {
-        setTimeout(resolve(products.find(prod => prod.id === id)), 500)
+        setTimeout(() => {
+            resolve(products.filter(producto => producto.tipoBebida === productCategory))
+        }, 1000)
+    })
+}
+
+export const getProductById = (productId) => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(products.find(producto => producto.id === Number(productId)))
+        }, 1000)
     })
 }

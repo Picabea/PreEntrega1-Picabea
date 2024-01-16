@@ -1,23 +1,22 @@
 import classes from './NavBar.module.css'
-import Button from '../Button/Button.jsx'
 import logo from './assets/ron-daLogo.png'
 import CartWidget from '../CartWidget/CartWidget.jsx'
-
+import { Link } from "react-router-dom"
 
 const NavBar = () => {
     return(
     <nav className={classes.nav}>
         <section>
-            <div>
+            <Link className={classes.linkNoDecoration} to="/">
                 <h1 className={classes.nombrePagina}>Bebidas Ron-da</h1>
                 <img src={logo} alt="" className={classes.logo}/>
-            </div>
+            </Link>
             <div>
-                <Button className={classes.alignCenter} texto="Todo"/>
-                <Button className={classes.alignCenter} texto="Vodka"/>
-                <Button className={classes.alignCenter} texto="Cervezas"/>
-                <Button className={classes.alignCenter} texto="Ron"/>
-                <Button className={classes.alignCenter} texto="Aperitivos"/>
+                <Link className={classes.button} to="">Todo</Link>
+                <Link className={classes.button} to="/category/Vodka">Vodka</Link>
+                <Link className={classes.button} to="/category/Cerveza">Cervezas</Link>
+                <Link className={classes.button} to="/category/Ron">Ron</Link>
+                <Link className={classes.button} to="/category/Aperitivo">Aperitivos</Link>
             </div>
         </section>
         <CartWidget/>

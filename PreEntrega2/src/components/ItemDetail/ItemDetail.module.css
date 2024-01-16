@@ -1,0 +1,20 @@
+.itemDetail img{
+    width: 50%;
+    height: 70%;
+    display: inline;
+}
+.itemDetail div{
+    width: 50%;
+}
+.itemDetail{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: rgba(154, 247, 154, 0.151);
+    padding: 20px;
+    height: 100%;
+    align-self: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+

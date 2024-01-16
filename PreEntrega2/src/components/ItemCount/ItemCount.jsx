@@ -1,5 +1,5 @@
 import {useState} from "react"
-
+import classes from "./ItemCount.module.css"
 const ItemCount = ({stock, initial, onAdd}) => {
     const [quantity, setQuantity] = useState(initial)
 
@@ -16,7 +16,7 @@ const ItemCount = ({stock, initial, onAdd}) => {
 
     return(
         <div>
-            <div>
+            <div className={classes.firstDiv}>
                 <button onClick={decrement}>-</button>
                 <h4>{quantity}</h4>
                 <button onClick={increment}>+</button>

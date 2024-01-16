@@ -18,8 +18,30 @@
     margin: 5px;
 }
 
+.linkNoDecoration{
+    text-decoration: none;
+    color: black;
+    display: flex;
+}
+
 .logo{
     height: 40px;
     width: 40px;
     align-self: center;
 }
+
+.button{
+    padding: 7px;
+    margin: 2px;
+    background-color: rgba(0, 128, 0, 0.233);
+    border: 3px solid rgb(89, 180, 89);
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.button:hover{
+    background-color: rgba(0, 128, 0, 0.404);
+    border: 3px solid rgb(54, 128, 54);
+}
+
