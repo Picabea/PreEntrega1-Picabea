@@ -1,7 +1,6 @@
 .itemListContainer{
-
     width: 100%;
     justify-content: center;
     height: 100%;
-    
+    display: flex;
 }
