@@ -1,0 +1,24 @@
+.cartView{
+    background-color: rgb(231, 231, 231);
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 50px;
+}
+
+.leyenda{
+    display: flex;
+    margin-left: 10%;
+    margin-right: 10%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.185);
+}
+
+.leyenda p{
+    width: 50%;
+    text-align: center;
+}
+
+.leyenda div{
+    display: flex;
+    width: 50%;
+}

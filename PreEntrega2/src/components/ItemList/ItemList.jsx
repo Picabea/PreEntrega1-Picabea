@@ -1,5 +1,6 @@
-import Item from "../Item/item.jsx"
+import Item from "../Item/Item.jsx"
 import classes from "./ItemList.module.css"
+
 const ItemList = ({productos}) => {
     return(
         <div className={classes.itemList}>
