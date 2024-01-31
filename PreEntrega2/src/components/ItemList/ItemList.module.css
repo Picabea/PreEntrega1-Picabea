@@ -1,11 +1,12 @@
 .itemList{
     display: flex;
     flex-direction: row;
-    justify-content: start;
+    justify-content: space-around;
 
     padding-top: 20px;
     padding-bottom: 20px;
     height: 100%;
+    justify-self: center;
     align-self: center;
     flex-wrap: wrap;
     width: 95%;

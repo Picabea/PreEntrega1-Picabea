@@ -11,6 +11,7 @@ const ItemDetail = ({producto}) => {
     const { addItemToCart, removeItemFromCart } = useCart()
     return(
         <div className={classes.itemDetail}>
+            
             <img src={import.meta.env.BASE_URL + producto.src} alt="" />
             <div>
                 <h2>{producto.tipoBebida} {producto.variedad} {producto.marca} {producto.contenido}</h2>

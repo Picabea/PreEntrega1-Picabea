@@ -5,36 +5,33 @@ import classes from "./ItemDetailContainer.module.css"
 import { useParams } from "react-router-dom"
 import { db } from '../../services/fireBase/firebaseConfig.js'
 import { getDoc, doc } from "firebase/firestore"
+import Loading from "../Loading/Loading.jsx"
 
 const ItemDetailContainer = () => {
-    const [producto, setProducto] = useState(null)
+    const [producto, setProducto] = useState([])
+    const [loading, setLoading] = useState(true)
 
     const { id } = useParams()
 
     useEffect(() => {
-    //     getProductById(id)
-    //         .then(response => {
-    //             setProducto(response)
-    //         })
-    //         .catch(err => console.error(err))
-    // }, []
     const productDocument = doc(db, 'products', id)
     getDoc(productDocument)
     .then(queryDocumentSnapshot => {
         const info = queryDocumentSnapshot.data()
         const productAdapted = {id: queryDocumentSnapshot.id, ...info}
         setProducto(productAdapted)
+        console.log(productAdapted)
     }
-
     )
+    console.log("Cargado")
+    setTimeout(() => setLoading(false), 850)
     }
     , [id])
 
-    if(!producto){
-        return(
-            <h1>No existe el producto</h1>
-        )
+    if(loading){
+        return(<Loading loading={loading}/>)
     }
+
     return(
         <div className={classes.itemDetailContainer}>
             <ItemDetail producto={producto}/>

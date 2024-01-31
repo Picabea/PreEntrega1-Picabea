@@ -10,8 +10,8 @@ const CartWidget = () => {
         
         <div className={classes.div}>
             <Link className={classes.button} to="/cart"><img src={cart} alt="" className={classes.cart}/></Link>
-            <b className={classes.items}>0</b>
-            {totalQuantity}
+            <b className={classes.items}>{totalQuantity}</b>
+            
         </div>
         
 

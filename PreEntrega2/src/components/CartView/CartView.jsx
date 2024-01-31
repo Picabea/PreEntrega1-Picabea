@@ -2,7 +2,7 @@ import { useCart } from "../../context/CartContext"
 import { Link } from "react-router-dom"
 import CartItem from "../CartItem/CartItem.jsx"
 import classes from "./CartView.module.css"
-
+import LeyendaCartView from '../LeyendaCartView/LeyendaCartView.jsx'
 const CartView = () => {
 
     const { cart } = useCart()
@@ -11,14 +11,7 @@ const CartView = () => {
     return(
         <>
         <div className={classes.cartView}>
-            <div className={classes.leyenda}>
-                <p>Producto</p>
-                <div>
-                    <p>Cantidad</p>
-                    <p>Precio</p>
-                </div>
-                
-            </div>
+            <LeyendaCartView/>
             <section>
                 {cart.map((prod) => {
                     return(
@@ -26,9 +19,8 @@ const CartView = () => {
                     )
                 })}
             </section>
-                
-            <section>
-                <h2>{total}</h2>
+            <section className={classes.precioTotal}>
+                <h2>Total: {total}</h2>
             </section>
             <Link to="/checkout">
                 Checkout
