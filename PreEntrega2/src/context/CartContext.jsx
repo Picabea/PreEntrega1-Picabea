@@ -1,19 +1,21 @@
 import { useState, createContext, useContext } from "react"
+import { useToast } from "./ToastContext.jsx"
 
 const CartContext = createContext()
 
 export const CartProvider = ({ children }) => {
     
     const [cart, setCart] = useState([])
+    const { notify } = useToast()
 
     const addItemToCart = (productToAdd) => {
       console.log(productToAdd)
       console.log(cart)
       if(!isInCart(productToAdd.id)) {
         setCart(prev => [...prev, productToAdd])
-        console.log(cart)
+        notify("success", "Producto agregado correctamente")
       }else{
-        console.error('El producto ya esta')
+        notify("error", "El producto ya esta agregado")
       }
     }
 
@@ -21,8 +23,17 @@ export const CartProvider = ({ children }) => {
       return cart.some(prod => prod.id == id)
     }
     
-    const removeItemFromCart = (id) => {
-      const cartUpdated = cart.filter(prod => prod.id =! id)
+    const removeItemFromCart = (productToRemove) => {
+      let id = productToRemove.id
+      console.log(id)
+      console.log(cart)
+      const cartUpdated = cart.filter(prod => {
+        console.log(id)
+        console.log(prod.id)
+        return(prod.id !== id)
+      })
+      notify("info", "El producto se elimino correctamente")
+      console.log(cartUpdated)
       setCart(cartUpdated)
     }
 
@@ -49,10 +60,10 @@ export const CartProvider = ({ children }) => {
     const total = getTotal()
 
     const clearCart = () => {
-
+      setCart([])
     } 
     return(
-        <CartContext.Provider value={{cart, addItemToCart, removeItemFromCart, totalQuantity, total}}>
+        <CartContext.Provider value={{cart, addItemToCart, removeItemFromCart, totalQuantity, total, clearCart}}>
             { children }
         </CartContext.Provider>
     )

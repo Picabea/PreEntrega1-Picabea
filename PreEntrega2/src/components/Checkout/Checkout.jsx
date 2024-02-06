@@ -2,74 +2,81 @@ import { collection, getDocs, where, query, documentId, writeBatch, addDoc} from
 import { useCart } from "../../context/CartContext"
 import { db } from "../../services/fireBase/firebaseConfig"
 import { useState } from "react"
+import classes from "./Checkout.module.css"
+import CheckoutForm from "../CheckoutForm/CheckoutForm"
+import { useToast } from "../../context/ToastContext"
 
 const Checkout = () => {
-    const [orderId, setOrderId] = useState(null)
-    const { cart, total } = useCart()
+    const { notify } = useToast()
 
-    const createOrder = async (userData) => {
+    const [orderId, setOrderId] = useState(null)
+    const { cart, total, clearCart } = useCart()
+
+    const createOrder = async ({ name, email, phone}) => {
         const order = {
             buyer: {
-                nombre: "Juan",
-                email: "Juan@gmail.com",
-                telefono: '1145678765'
+                name, phone, email
             },
             items: cart,
-            total
+            total: total,
+            time: Date.now()
         }
+
         const outOfStock = []
         const batch = writeBatch(db)
 
-        console.log(cart)
         const ids = cart.map(prod => prod.id)
-        console.log(ids)
-
-        const productsCollection = query(collection(db, 'products'), where(documentId(), "in", ids))
-        const querySnapshot = await getDocs(productsCollection)
-        const { docs } = querySnapshot
-        console.log(docs)
-
-        docs.forEach(doc => {
-            let info = doc.data()
-            let stock = info.stock
-            console.log(info)
-            console.log(doc.id)
-
-            let productAddedToCart = cart.find(prod => prod.id = doc.id)
-            console.log(productAddedToCart)
-
-            let quantity = productAddedToCart.quantity
-            
-            if(info.stock >= quantity){
-                console.log(stock, quantity)
-                batch.update(doc.ref, {stock: stock - quantity})
-            }else{
-                outOfStock.push({id: doc.id, ...info})
-            }
-        })
-
-        if(outOfStock.length == 0){
-            batch.commit()
-            const orderCollection = collection(db, 'orders')
-            const { id } = await addDoc(orderCollection, order)
-            setOrderId(id)
-        } else{
-            console.log("No hay stock")
-            //mostrar notifiacion anunciando que no hay stock
+        if(ids.length != 0){
+            const productsCollection = query(collection(db, 'products'), where(documentId(), "in", ids))
+            const querySnapshot = await getDocs(productsCollection)
+            const { docs } = querySnapshot
+    
+            docs.forEach(doc => {
+                let info = doc.data()
+                let stock = info.stock
+    
+                let productAddedToCart = cart.find(prod => prod.id === doc.id)
+    
+                let quantity = productAddedToCart.quantity
+    
+                if(info.stock >= quantity){
+                    batch.update(doc.ref, {stock: stock - quantity})
+                }else{
+                    notify("error", `El producto ${info.variedad} ${info.marca} no tiene stock`)
+                    outOfStock.push({id: doc.id, ...info})
+                }
+                
+            })
+            if(outOfStock.length == 0){
+                await batch.commit()
+                const orderCollection = collection(db, 'orders')
+                const { id } = await addDoc(orderCollection, order)
+                setOrderId(id)
+                clearCart()
+                notify("success", "La compra se realizo correctamente")
+            } else{
+                notify("error", "No se pudo confirmar su compra")
+            }   
+        }else{
+            notify("error", "Agregue productos para finalizar la compra")
         }
         
-    }
-    if(orderId){
-        console.log(`El id de su compra es ${orderId}`)
-    }else{
-        console.error("Algo salio mal")
-    }
 
+        
+    }
+    
+    if(orderId){
+        return(
+            <h2 className={classes.orderId}>El id de su compra es: {orderId}</h2>
+        )
+    }
     
     return(
-        <div>
-            <h1>Checkout</h1>
-            <button onClick={createOrder}>Generar orden</button>
+        <div className={classes.checkOut}>
+            <div className={classes.divCheckout}>
+                <h1>Ingrese sus datos:</h1>
+                <CheckoutForm onConfirm={createOrder}/>
+            </div>
         </div>
     )
 }

@@ -4,21 +4,29 @@ import ItemCount from "../ItemCount/ItemCount.jsx"
 import { useCart } from "../../context/CartContext.jsx"
 
 const ItemDetail = ({producto}) => {
-    
+    if(!producto){
+        return(
+            <h1>El producto no existe</h1>
+        )
+    }
     const [quantity, setQuantity] = useState(0)
-    // const value = useCart(Context)
+    console.log(producto)
     
-    const { addItemToCart, removeItemFromCart } = useCart()
+    const { addItemToCart } = useCart()
     return(
         <div className={classes.itemDetail}>
             
             <img src={import.meta.env.BASE_URL + producto.src} alt="" />
-            <div>
-                <h2>{producto.tipoBebida} {producto.variedad} {producto.marca} {producto.contenido}</h2>
-                <p>{producto.descripcion}</p>
-                <p>Contiene una graduacion alcoholica de {producto.graduacion}</p>
-                <b>{producto.precio}</b>
-                <ItemCount initial={1} stock={10} onAdd={addItemToCart} onRemove={removeItemFromCart} producto={producto}/>
+            <div className={classes.divRightColumn}>
+                <div className={classes.descripcionDiv}>
+                    <h2>{producto.tipoBebida} {producto.variedad} {producto.marca} {producto.contenido}</h2>
+                    <b className={classes.precio}>${producto.precio}</b>
+                    <div>
+                        <p>{producto.descripcion}</p>
+                        <p>Contiene una graduacion alcoholica de {producto.graduacion}</p>
+                    </div>
+                </div>
+                    <ItemCount initial={1} stock={producto.stock} onAdd={addItemToCart} producto={producto}/>
             </div>
         </div>
     )

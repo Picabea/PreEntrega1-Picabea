@@ -9,27 +9,34 @@ import Loading from '../Loading/Loading.jsx'
 
 
 const ItemListContainer = (props) => {
+    //Se declaran las variables necesarias y se recoje el parametro enviado mediante la url
     const [productos, setProductos] = useState([])
     const [loading, setLoading] = useState(true)
     const { categoria } = useParams()
 
     useEffect(() => {
-    const productsCollection = categoria 
-    ?query(collection(db, 'products'), where('tipoBebida', '==', categoria)) 
-    :collection(db, 'products')
-
-    getDocs(productsCollection)
-    .then(querySnapshot => {
-        const productsAdapted = querySnapshot.docs.map(doc => {
-            const infoProd = doc.data() 
-            return{id: doc.id, ...infoProd}
+        // Dependiendo si hay categoria o no se guarda una coleccion distina
+        const productsCollection = categoria 
+        ?query(collection(db, 'products'), where('tipoBebida', '==', categoria)) 
+        :collection(db, 'products')
+        
+        //Se trae la info de firebase
+        console.log("consulta hecha")
+        getDocs(productsCollection)
+        //Se procesa esa informacion para adaptarla a lo requerido
+        .then(querySnapshot => {
+            const productsAdapted = querySnapshot.docs.map(doc => {
+                const infoProd = doc.data() 
+                return{id: doc.id, ...infoProd}
+            })
+            setProductos(productsAdapted)
         })
-        setProductos(productsAdapted)
-    })
-    .catch(err => console.err(err))
-    console.log("cargado")
-    setLoading(false)
-    }, [categoria])
+        .catch(err => {console.error(err)
+            setLoading(false)})
+
+        //Seteamos loading a false para dejar de ver el mensaje
+        setLoading(false)}, [categoria])
+        
     return(
         <div className={classes.itemListContainer}>
             <Loading loading={loading}/>

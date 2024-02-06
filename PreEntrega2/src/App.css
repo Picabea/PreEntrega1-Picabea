@@ -3,13 +3,13 @@ body{
   margin: 0px
 }
 
-header{
+/* header{
   width: 100%;
   position: sticky;
   top: 0;
   padding: 10px;
   background-color: rgb(164, 230, 148);
-}
+} */
 
 #root{
   height: 100%;

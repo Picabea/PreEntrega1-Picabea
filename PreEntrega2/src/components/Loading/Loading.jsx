@@ -1,8 +1,6 @@
-
-
 const Loading = ({ loading }) => {
+    // En caso de que se le envie loading = true se mostrara el mensaje de carga
     if(loading){
-        console.log("cargnado")
     return(
         <h4>Cargando...</h4>
     )}

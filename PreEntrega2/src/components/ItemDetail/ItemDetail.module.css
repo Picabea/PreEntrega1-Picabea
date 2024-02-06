@@ -1,11 +1,27 @@
 .itemDetail img{
     width: 50%;
-    height: 70%;
+    height: fit-content;
     display: inline;
 }
-.itemDetail div{
+
+
+.divRightColumn{
     width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
 }
+
+.descripcionDiv{
+    width: 100%;
+}
+
+.itemDetail b{
+    font-size: 150%;
+    font-weight: 300;
+}
+
 .itemDetail{
     display: flex;
     flex-direction: row;
@@ -16,4 +32,3 @@
     flex-wrap: wrap;
     width: 100%;
 }
-

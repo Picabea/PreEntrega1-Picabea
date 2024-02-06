@@ -1,5 +1,6 @@
 import classes from "./item.module.css"
 import { Link } from "react-router-dom"
+
 const Item = ({producto}) => {
     return(
             <Link to={`/item/${producto.id}`} className={classes.link}>
